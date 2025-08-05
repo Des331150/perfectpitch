@@ -1,4 +1,4 @@
-from django import forms, UserCreationForm, ValidationError
+from django.contrib.auth.forms import forms, UserCreationForm, ValidationError
 from .models import CustomUser
 from django.contrib.auth import authenticate
 import os
