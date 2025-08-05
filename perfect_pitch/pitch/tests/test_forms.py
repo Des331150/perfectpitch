@@ -2,7 +2,7 @@ from django.test import TestCase
 from pitch.forms import UserRegistrationForm
 
 
-class UserRegistrationFormTest(TestCase):
+class UserRegistrationFormTestCase(TestCase):
     def test_form_with_valid_data(self):
         form_data = {
             "name": "John Doe",
