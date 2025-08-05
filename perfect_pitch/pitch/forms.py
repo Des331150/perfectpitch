@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate
 import os
 
 
-class CustomUserForm(UserCreationForm):
+class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ["name", "email", "password1", "password2"]
