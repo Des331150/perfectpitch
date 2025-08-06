@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-900 px-4 py-8">
+    <!-- Overall Score Section -->
+    <div class="max-w-4xl mx-auto mb-8">
+        <div class="bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-700">
+            <div class="flex items-center justify-between mb-6">
+                <h1 class="text-2xl font-bold text-white">Resume Analysis Results</h1>
+                <div class="relative w-24 h-24 rounded-full bg-gray-700 flex items-center justify-center">
+                    <svg class="absolute w-24 h-24" viewBox="0 0 36 36">
+                        <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                            fill="none" stroke="#3B82F6" stroke-width="2" stroke-dasharray="85, 100" />
+                    </svg>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-400">85</div>
+                        <div class="text-xs text-gray-400">/100</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Metrics in One Card -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div class="p-4 bg-gray-700 rounded-lg">
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-lg font-medium text-white mb-2">Style</h3>
+                        <div class="text-2xl font-bold text-blue-400">90</div>
+                        <div class="text-sm text-gray-400">/100</div>
+                    </div>
+                </div>
+                <div class="p-4 bg-gray-700 rounded-lg">
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-lg font-medium text-white mb-2">Tone</h3>
+                        <div class="text-2xl font-bold text-blue-400">85</div>
+                        <div class="text-sm text-gray-400">/100</div>
+                    </div>
+                </div>
+                <div class="p-4 bg-gray-700 rounded-lg">
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-lg font-medium text-white mb-2">Skills</h3>
+                        <div class="text-2xl font-bold text-blue-400">80</div>
+                        <div class="text-sm text-gray-400">/100</div>
+                    </div>
+                </div>
+                <div class="p-4 bg-gray-700 rounded-lg">
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-lg font-medium text-white mb-2">Format</h3>
+                        <div class="text-2xl font-bold text-blue-400">85</div>
+                        <div class="text-sm text-gray-400">/100</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Suggestions Panels -->
+    <div class="max-w-4xl mx-auto space-y-6">
+        <!-- Style Suggestions -->
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-semibold text-white">Style Improvement Suggestions</h2>
+                <span class="px-3 py-1 bg-blue-600 text-white rounded-full">90/100</span>
+            </div>
+            <div class="space-y-4">
+                <div class="p-4 bg-gray-700 rounded-lg">
+                    <h3 class="text-white font-medium mb-2">Based on Job Description:</h3>
+                    <ul class="text-gray-300 list-disc list-inside space-y-2">
+                        <li>Use more industry-specific action verbs like "implemented," "developed," "managed"</li>
+                        <li>Strengthen impact statements with quantifiable results</li>
+                        <li>Maintain consistent tense throughout experience descriptions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tone Suggestions -->
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-semibold text-white">Tone Improvement Suggestions</h2>
+                <span class="px-3 py-1 bg-blue-600 text-white rounded-full">85/100</span>
+            </div>
+            <div class="space-y-4">
+                <div class="p-4 bg-gray-700 rounded-lg">
+                    <h3 class="text-white font-medium mb-2">Based on Job Description:</h3>
+                    <ul class="text-gray-300 list-disc list-inside space-y-2">
+                        <li>Align your professional voice with the company's culture</li>
+                        <li>Use more confident language in achievement descriptions</li>
+                        <li>Replace passive phrases with active voice</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Suggestions -->
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-semibold text-white">Skills Match Suggestions</h2>
+                <span class="px-3 py-1 bg-blue-600 text-white rounded-full">80/100</span>
+            </div>
+            <div class="space-y-4">
+                <div class="p-4 bg-gray-700 rounded-lg">
+                    <h3 class="text-white font-medium mb-2">Based on Job Description:</h3>
+                    <ul class="text-gray-300 list-disc list-inside space-y-2">
+                        <li>Add missing key skills: [specific skills from job description]</li>
+                        <li>Highlight relevant technical competencies</li>
+                        <li>Include industry-specific certifications mentioned in the job post</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Format Suggestions -->
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-semibold text-white">Format Improvement Suggestions</h2>
+                <span class="px-3 py-1 bg-blue-600 text-white rounded-full">85/100</span>
+            </div>
+            <div class="space-y-4">
+                <div class="p-4 bg-gray-700 rounded-lg">
+                    <h3 class="text-white font-medium mb-2">Based on Job Description:</h3>
+                    <ul class="text-gray-300 list-disc list-inside space-y-2">
+                        <li>Optimize section order to highlight relevant experience</li>
+                        <li>Ensure consistent spacing and alignment</li>
+                        <li>Use ATS-friendly section headings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Report Button -->
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+            <button class="w-full btn btn-primary bg-blue-600 border-none hover:bg-blue-700">
+                Download Detailed Report
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}

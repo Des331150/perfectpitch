@@ -29,3 +29,10 @@ class Login_view(LoginView):
 
 def homepage(request):
     return render(request, "homepage.html")
+
+
+def results(request):
+    return render(
+        request,
+        "results.html",
+    )
