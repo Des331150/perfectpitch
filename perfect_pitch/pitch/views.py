@@ -4,6 +4,7 @@ from .models import CustomUser
 from .forms import UserRegistrationForm, UserLoginForm
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
+from django.contrib.auth import login
 
 
 # Create your views here.
@@ -25,6 +26,11 @@ class Login_view(LoginView):
         if "request" in kwargs:
             kwargs.pop("request")
         return kwargs
+
+    def form_valid(self, form):
+        user = form.get_user()
+        login(self.request, user)
+        return super().form_valid(form)
 
 
 def homepage(request):
