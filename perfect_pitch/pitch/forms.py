@@ -19,21 +19,31 @@ class UserRegistrationForm(UserCreationForm):
 
 
 class UserLoginForm(forms.Form):
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput())
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={"class": "form-control", "placeholder": "Email"})
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"class": "form-control", "placeholder": "Password"}
+        )
+    )
 
     def clean(self):
         cleaned_data = super().clean()
         email = cleaned_data.get("email")
         password = cleaned_data.get("password")
 
+        def __init__(self, *args, **kwargs):
+            self.request = kwargs.pop("request", None)
+            super().__init__(*args, **kwargs)
+
         if email and password:
-            user = authenticate(email=email, password=password)
+            self.user_cache = authenticate(email=email, password=password)
 
-        if user is None:
-            raise forms.ValidationError("Invalid email or password.")
+            if self.user_cache is None:
+                raise forms.ValidationError("Invalid email or password.")
 
-        self.user = user
+        return cleaned_data
 
 
 class ResumeAnalysisForm(forms.Form):
