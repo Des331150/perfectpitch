@@ -9,6 +9,7 @@
             <form action="{% url 'pitch:login' %}" method="POST" class="space-y-6">
                 {% csrf_token %}
 
+
                 <div>
                     <label for="full-name" class="block text-sm font-medium text-gray-200">Full Name</label>
                     <div class="mt-2">
@@ -30,7 +31,7 @@
                 <div>
                     <label for="password" class="block text-sm font-medium text-gray-200">Password</label>
                     <div class="mt-2">
-                        <input id="password" type="password" name="password" required
+                        <input id="password1" type="password" name="password1" required
                             class="block w-full rounded-md border-0 bg-gray-700 text-white px-3 py-2 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm" />
                     </div>
                 </div>
@@ -39,7 +40,7 @@
                     <label for="confirm-password" class="block text-sm font-medium text-gray-200">Confirm
                         Password</label>
                     <div class="mt-2">
-                        <input id="confirm-password" type="password" name="confirm_password" required
+                        <input id="password2" type="password" name="password2" required
                             class="block w-full rounded-md border-0 bg-gray-700 text-white px-3 py-2 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm" />
                     </div>
                 </div>
