@@ -16,14 +16,6 @@ class SignupView(CreateView):
 
 
 class Login_view(LoginView):
-    def post(self, request, *args, **kwargs):
-        print("POST received")
-        return super().post(request, *args, **kwargs)
-
-    def get(self, request, *args, **kwargs):
-        print("GET received")
-        return super().get(request, *args, **kwargs)
-
     authentication_form = UserLoginForm
     template_name = "login.html"
     redirect_authenticated_user = True
