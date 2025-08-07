@@ -32,5 +32,4 @@ class UserRegistrationFormTestCase(TestCase):
             "password2": "hotkink99",
         }
         form = UserRegistrationForm(data=form_data)
-        print(form.errors)
-        self.assertFalse(form.is_valid)
+        self.assertFalse(form.is_valid())
