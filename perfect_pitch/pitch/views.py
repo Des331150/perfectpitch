@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
-from .models import CustomUser
+from django.views.generic import CreateView, TemplateView
+from .models import CustomUser, ResumeAnalysis
 from .forms import UserRegistrationForm, UserLoginForm
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
@@ -33,12 +33,10 @@ class Login_view(LoginView):
         return super().form_valid(form)
 
 
-def homepage(request):
-    return render(request, "homepage.html")
+class HomepageView(TemplateView):
+    template_name = "homepage.html"
+    success_url = reverse_lazy("results")
 
 
 def results(request):
-    return render(
-        request,
-        "results.html",
-    )
+    return render(request, "results.html")
