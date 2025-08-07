@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, TemplateView
-from .models import CustomUser, ResumeAnalysis
-from .forms import UserRegistrationForm, UserLoginForm
+from django.views.generic import CreateView, FormView
+from .models import CustomUser
+from .forms import UserRegistrationForm, UserLoginForm, ResumeAnalysisForm
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
@@ -16,6 +16,14 @@ class SignupView(CreateView):
 
 
 class Login_view(LoginView):
+    def post(self, request, *args, **kwargs):
+        print("POST received")
+        return super().post(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        print("GET received")
+        return super().get(request, *args, **kwargs)
+
     authentication_form = UserLoginForm
     template_name = "login.html"
     redirect_authenticated_user = True
@@ -33,7 +41,8 @@ class Login_view(LoginView):
         return super().form_valid(form)
 
 
-class HomepageView(TemplateView):
+class HomepageView(FormView):
+    form_class = ResumeAnalysisForm
     template_name = "homepage.html"
     success_url = reverse_lazy("results")
 
