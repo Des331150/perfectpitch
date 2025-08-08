@@ -1,5 +1,5 @@
 from django.test import TestCase
-from pitch.forms import UserRegistrationForm
+from pitch.forms import UserRegistrationForm, UserLoginForm
 
 
 class UserRegistrationFormTestCase(TestCase):
@@ -11,7 +11,6 @@ class UserRegistrationFormTestCase(TestCase):
             "password2": "hotflame02",
         }
         form = UserRegistrationForm(data=form_data)
-        print(form.errors)
         self.assertTrue(form.is_valid())
 
     def test_form_with_missing_fields(self):
@@ -33,3 +32,11 @@ class UserRegistrationFormTestCase(TestCase):
         }
         form = UserRegistrationForm(data=form_data)
         self.assertFalse(form.is_valid())
+
+
+class UserLoginFormTest(TestCase):
+    def test_with_valid_form(self):
+        form_data = {"email": "arhinfuldesmondpapa@gmail.com", "password": "hotflame02"}
+
+        form = UserLoginForm(data=form_data)
+        self.assertTrue(form.is_valid())

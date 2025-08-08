@@ -1,4 +1,9 @@
-from django.contrib.auth.forms import forms, UserCreationForm, ValidationError
+from django.contrib.auth.forms import (
+    forms,
+    UserCreationForm,
+    ValidationError,
+    AuthenticationForm,
+)
 from .models import CustomUser
 from django.contrib.auth import authenticate
 import os
@@ -10,7 +15,7 @@ class UserRegistrationForm(UserCreationForm):
         fields = ["name", "email", "password1", "password2"]
 
 
-class UserLoginForm(forms.Form):
+class UserLoginForm(AuthenticationForm):
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={"class": "form-control", "placeholder": "Email"})
     )
