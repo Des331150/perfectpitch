@@ -365,9 +365,6 @@
     --btn-fg: var(--color-primary-content);
     isolation: isolate;
   }
-  .pointer-events-none {
-    pointer-events: none;
-  }
   .list {
     display: flex;
     flex-direction: column;
@@ -671,12 +668,6 @@
   .static {
     position: static;
   }
-  .inset-y-0 {
-    inset-block: calc(var(--spacing) * 0);
-  }
-  .left-0 {
-    left: calc(var(--spacing) * 0);
-  }
   .textarea {
     border: var(--border) solid #0000;
     min-height: calc(0.25rem * 20);
@@ -806,14 +797,8 @@
   .mt-1 {
     margin-top: calc(var(--spacing) * 1);
   }
-  .mt-2 {
-    margin-top: calc(var(--spacing) * 2);
-  }
   .mt-6 {
     margin-top: calc(var(--spacing) * 6);
-  }
-  .-mr-1 {
-    margin-right: calc(var(--spacing) * -1);
   }
   .mb-1 {
     margin-bottom: calc(var(--spacing) * 1);
@@ -1180,9 +1165,6 @@
   .bg-gray-950 {
     background-color: var(--color-gray-950);
   }
-  .bg-red-500 {
-    background-color: var(--color-red-500);
-  }
   .bg-red-500\/10 {
     background-color: color-mix(in srgb, oklch(63.7% 0.237 25.331) 10%, transparent);
   }
@@ -1193,9 +1175,6 @@
   }
   .bg-white {
     background-color: var(--color-white);
-  }
-  .p-3 {
-    padding: calc(var(--spacing) * 3);
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
@@ -1229,9 +1208,6 @@
   }
   .py-12 {
     padding-block: calc(var(--spacing) * 12);
-  }
-  .pl-3 {
-    padding-left: calc(var(--spacing) * 3);
   }
   .pl-10 {
     padding-left: calc(var(--spacing) * 10);
