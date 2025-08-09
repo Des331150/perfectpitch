@@ -2,7 +2,6 @@ from django.contrib.auth.forms import (
     forms,
     UserCreationForm,
     ValidationError,
-    AuthenticationForm,
 )
 from .models import CustomUser
 from django.contrib.auth import authenticate
@@ -48,7 +47,7 @@ class UserRegistrationForm(UserCreationForm):
         fields = ["name", "email", "password1", "password2"]
 
 
-class UserLoginForm(AuthenticationForm):
+class UserLoginForm(forms.Form):
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={"class": "form-control", "placeholder": "Email"})
     )
