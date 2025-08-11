@@ -20,10 +20,15 @@ class SignupView(CreateView):
 
 
 class Login_view(LoginView):
-    form_class = UserLoginForm  # Use form_class instead of authentication_form
+    form_class = UserLoginForm
     template_name = "login.html"
     redirect_authenticated_user = True
-    success_url = reverse_lazy("pitch:homepage")
+
+    def get_success_url(self):
+        next_url = self.request.GET.get("next")
+        if next_url:
+            return next_url
+        return reverse_lazy("pitch:homepage")
 
     def form_valid(self, form):
         """Security check complete. Log the user in."""
@@ -84,7 +89,13 @@ class HomepageView(TemplateView):
 class ResultsView(LoginRequiredMixin, TemplateView):
     template_name = "results.html"
 
+    def get(self, request, *args, **kwargs):
+        # Check if results exist in session
+        if not request.session.get("analysis_results"):
+            return redirect("pitch:homepage")
+        return super().get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["analysis_results"] = kwargs.get("analysis_results", {})
+        context["results"] = self.request.session.get("analysis_results")
         return context

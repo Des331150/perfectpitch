@@ -90,32 +90,32 @@ class ResumeAnalysisForm(forms.ModelForm):
     job_title = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "block w-full rounded-lg border-0 bg-gray-700 text-white px-3 py-2 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm",
-                "placeholder": "Enter the job title",
+                "class": "block w-full rounded-lg border-0 bg-gray-700/50 text-white px-4 py-3 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm",
+                "placeholder": "Enter the job title you're applying for",
             }
         )
     )
     job_description = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                "class": "block w-full rounded-lg border-0 bg-gray-700 text-white px-3 py-2 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm",
+                "class": "block w-full rounded-lg border-0 bg-gray-700/50 text-white px-4 py-3 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm",
                 "placeholder": "Paste the job description here",
-                "rows": 4,
+                "rows": "4",
             }
         )
     )
     resume_file = forms.FileField(
         widget=forms.FileInput(
             attrs={
-                "class": "block w-full rounded-lg border-0 bg-gray-700 text-white px-3 py-2 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm",
-                "accept": ".pdf",
+                "class": "block w-full rounded-lg border-0 bg-gray-700/50 text-white px-4 py-3 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-500",
+                "accept": "application/pdf",
             }
         )
     )
 
     class Meta:
         model = ResumeAnalysis
-        fields = ["resume_file", "job_title", "job_description"]
+        fields = ["job_title", "job_description", "resume_file"]
 
     def clean_resume_file(self):
         resume = self.cleaned_data["resume_file"]
