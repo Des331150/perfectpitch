@@ -3,7 +3,7 @@ from django.contrib.auth.forms import (
     UserCreationForm,
     ValidationError,
 )
-from .models import CustomUser
+from .models import CustomUser, ResumeAnalysis
 from django.contrib.auth import authenticate
 import os
 
@@ -84,8 +84,9 @@ class UserLoginForm(forms.Form):
 
 
 class ResumeAnalysisForm(forms.Form):
-    resume_file = forms.FileField()
-    job_title = forms.CharField()
+    class Meta:
+        model = ResumeAnalysis
+        fields = ["resume_file", "score", "feedback", "job_title", "job_description"]
 
     def clean_resume_file(self):
         resume = self.cleaned_data["resume_file"]
