@@ -65,34 +65,60 @@ class UserLoginForm(forms.Form):
         )
     )
 
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop("request", None)
+        super().__init__(*args, **kwargs)
+        self.user_cache = None
+
     def clean(self):
         cleaned_data = super().clean()
         email = cleaned_data.get("email")
         password = cleaned_data.get("password")
 
-        def __init__(self, *args, **kwargs):
-            self.request = kwargs.pop("request", None)
-            super().__init__(*args, **kwargs)
-
         if email and password:
             self.user_cache = authenticate(email=email, password=password)
-
             if self.user_cache is None:
                 raise forms.ValidationError("Invalid email or password.")
 
         return cleaned_data
 
+    def get_user(self):
+        return self.user_cache
 
-class ResumeAnalysisForm(forms.Form):
+
+class ResumeAnalysisForm(forms.ModelForm):
+    job_title = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "block w-full rounded-lg border-0 bg-gray-700 text-white px-3 py-2 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm",
+                "placeholder": "Enter the job title",
+            }
+        )
+    )
+    job_description = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                "class": "block w-full rounded-lg border-0 bg-gray-700 text-white px-3 py-2 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm",
+                "placeholder": "Paste the job description here",
+                "rows": 4,
+            }
+        )
+    )
+    resume_file = forms.FileField(
+        widget=forms.FileInput(
+            attrs={
+                "class": "block w-full rounded-lg border-0 bg-gray-700 text-white px-3 py-2 shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm",
+                "accept": ".pdf",
+            }
+        )
+    )
+
     class Meta:
         model = ResumeAnalysis
-        fields = ["resume_file", "score", "feedback", "job_title", "job_description"]
+        fields = ["resume_file", "job_title", "job_description"]
 
     def clean_resume_file(self):
         resume = self.cleaned_data["resume_file"]
-        extension = os.path.splitext(resume.name)
-        allowed_extensions = [".pdf"]
-
-        if extension.lower() not in allowed_extensions:
+        if not resume.name.lower().endswith(".pdf"):
             raise ValidationError("Only PDF files are allowed")
         return resume
