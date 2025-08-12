@@ -2,6 +2,7 @@ import pymupdf
 import re
 from typing import Optional
 from openai import OpenAI
+import json  # Import json module for parsing JSON responses
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
@@ -97,8 +98,16 @@ def analyze_resume(resume_text: str, job_title: str, job_description: str) -> di
             temperature=0.7,  # Add some creativity but keep it professional
         )
 
-        # Extract and return the analysis
-        return response.choices[0].message.content
+        # Parse the response JSON string into a dictionary
+        try:
+            result = json.loads(response.choices[0].message.content)
+            return result
+        except json.JSONDecodeError as e:
+            print(f"Error parsing API response: {e}")
+            return None
+        except Exception as e:
+            print(f"Error processing API response: {e}")
+            return None
 
     except Exception as e:
         print(f"Error during API call: {e}")
@@ -109,14 +118,21 @@ def process_resume(pdf_path: str, job_title: str, job_description: str) -> dict:
     """
     Process a resume PDF and return analysis results
     """
-    # Extract text from PDF
-    resume_text = extract_text_from_pdf(pdf_path)
-    if not resume_text:
-        return {"error": "Could not extract text from PDF"}
+    try:
+        # Extract text from PDF
+        resume_text = extract_text_from_pdf(pdf_path)
+        if not resume_text:
+            return {"error": "Could not extract text from PDF", "success": False}
 
-    # Analyze the resume
-    analysis = analyze_resume(resume_text, job_title, job_description)
-    if not analysis:
-        return {"error": "Could not analyze resume"}
+        # Analyze the resume
+        analysis = analyze_resume(resume_text, job_title, job_description)
+        if not analysis:
+            return {"error": "Could not analyze resume", "success": False}
 
-    return analysis
+        # Add success flag to the response
+        analysis["success"] = True
+        return analysis
+
+    except Exception as e:
+        print(f"Error processing resume: {e}")
+        return {"error": str(e), "success": False}
